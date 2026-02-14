@@ -136,10 +136,21 @@
   },
   "channels": {
     "telegram": {
-      "dmPolicy": "pairing",
-      "botToken": "8444027368:AAF7uVqEhcZGJ7PAtKzFB1k44tJkiynYklM",
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "8098317871"
+      ],
       "groupPolicy": "allowlist",
-      "streamMode": "partial"
+      "streamMode": "partial",
+      "accounts": {
+        "main": {
+          "botToken": "8444027368:AAF7uVqEhcZGJ7PAtKzFB1k44tJkiynYklM"
+        },
+        "hass-bot": {
+          "botToken": "8342629110:AAFHsiDsUjIpQych_v471jxfNXZEMkCeY0A"
+        }
+      }
     }
   },
   "gateway": {
@@ -172,16 +183,15 @@
   },
   "plugins": {
     "allow": [
+      "telegram",
       "dingtalk",
       "qqbot",
-      "wecom",
-      "telegram"
+      "wecom"
     ],
     "entries": {
       "telegram": {
-        "enabled": false
+        "enabled": true
       }
-    },
-    "installs": {}
+    }
   }
 }
