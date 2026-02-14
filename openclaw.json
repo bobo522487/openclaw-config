@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.9",
+    "lastTouchedAt": "2026-02-14T12:45:11.187Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-14T11:07:18.488Z",
+    "lastRunVersion": "2026.2.9",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "zai:default": {
+        "provider": "zai",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "zai": {
+        "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
+        "auth": "api-key",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-5",
+            "name": "GLM 5 Bigmodel",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          }
+        ]
+      },
+      "default": {
+        "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
+        "apiKey": "40398cea00894644999bdcd8ddf46196.BF9IaFA0rcNoq4Ox",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-5",
+            "name": "glm-5",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "default/glm-5",
+        "fallbacks": [
+          "zai/glm-4.7"
+        ]
+      },
+      "imageModel": {
+        "primary": "default/glm-5"
+      },
+      "models": {
+        "zai/glm-5": {
+          "alias": "GLM"
+        },
+        "zai/glm-4.7": {
+          "alias": "GLM"
+        }
+      },
+      "workspace": "/home/node/.openclaw/workspace",
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "Main",
+        "model": {
+          "primary": "antigravity-local/claude-opus-4-6-thinking",
+          "fallbacks": [
+            "zai/glm-5"
+          ]
+        }
+      },
+      {
+        "id": "hass",
+        "name": "HASS Bot",
+        "workspace": "/home/bobo/.openclaw/workspace-hass",
+        "model": {
+          "primary": "zai/glm-5",
+          "fallbacks": [
+            "antigravity-local/claude-opus-4-6-thinking"
+          ]
+        },
+        "groupChat": {
+          "mentionPatterns": [
+            "@hass",
+            "@hassbot",
+            "@home"
+          ]
+        }
+      }
+    ]
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "channels": {
+    "telegram": {
+      "dmPolicy": "pairing",
+      "botToken": "8444027368:AAF7uVqEhcZGJ7PAtKzFB1k44tJkiynYklM",
+      "groupPolicy": "allowlist",
+      "streamMode": "partial"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan",
+    "auth": {
+      "mode": "token",
+      "token": "b8e95fb4826968312294bb38088d06fb2952563d5d60f583"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "allow": [
+      "dingtalk",
+      "qqbot",
+      "wecom",
+      "telegram"
+    ],
+    "entries": {
+      "telegram": {
+        "enabled": false
+      }
+    },
+    "installs": {}
+  }
+}

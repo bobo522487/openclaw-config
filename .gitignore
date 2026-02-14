@@ -1,0 +1,24 @@
+# Ignore sensitive data
+*.token
+*.key
+*.secret
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore temporary files
+*.tmp
+*.temp
+.cache/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore workspace data (keep config only)
+workspace/sessions/
+workspace/agents/
+
+# Ignore specific sensitive configs
+openclaw.json.backup
+medication-state.json
